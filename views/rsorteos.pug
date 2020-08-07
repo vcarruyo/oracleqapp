@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  div(class='container')
+    div(class='row')
+      h1(style={'text-align':'center', width: '100%', 'margin-bottom': '30px'}) Resultados
+      div
+       a(href='/quiniela/sorteos' class='btn btn-primary btn-block') Realizar otra busqueda
+      form(action='/quiniela/ganadores/json' method='GET' style={width: '30%', display: 'inherit', margin: '0 10px 30px'})
+        input(class='btn btn-primary btn-block' type='submit' value='Descargar archivo')
+        input(class='form-control field' readonly='' type='text' name='extGameDayId' value=data.prizes[0]["externalGameDayId"])
+     
+      table(id='rsorteos' class='table table-hover')
+        thead 
+          tr
+            th(scope='col') GameDayId
+            th(scope='col') GameCode
+            th(scope='col') ExternalGameDayId
+            th(scope='col') TicketId
+            th(scope='col') Prize
+        - var n = 0;
+        while n < data.prizes.length        
+         tr
+           each val, key in data.prizes[n++]                               
+            th= val   

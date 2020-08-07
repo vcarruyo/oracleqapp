@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  div(class='container')
+    div(class='row')
+      h1(style={'text-align':'center', width: '100%', 'margin-bottom': '30px'}) Resultados
+      div
+        ul(class='pagination pagination-lg')
+          if data['gameDay'] !== 'undefined'
+            - var extGameDayFrom = data['gameDay'][0]['gameDay']['externalGameDayId'];
+            - var lastIndex = data['gameDay'].length - 1;
+            - var extGameDayTo = data['gameDay'][lastIndex]['gameDay']['externalGameDayId'];
+          li(class='page-item active')  
+            a(class='page-link', href='/quiniela/instancias') Realizar otra busqueda
+          li(class='page-item')   
+            a(class='page-link', href=`/quiniela/instancias/Lotba/${extGameDayFrom}-${extGameDayTo}`) Descargar archivo lotba
+          li(class='page-item')  
+            a(class='page-link', href=`/quiniela/instancias/entreRios/${extGameDayFrom}-${extGameDayTo}`) Descargar archivo entreRios
+      
+     
+      table(id='rinstancias' class='table table-hover')
+        thead 
+          tr
+            th(scope='col') GameDayId
+            th(scope='col') ExternalGamedDayID
+            th(scope='col') saleOpenDateTime
+            th(scope='col') saleCloseDateTime
+            th(scope='col') expirationDataTime
+            th(scope='col') drawScheduledDataTime
+        - var n = 0;
+        - var m = data["gameDay"].length;
+        while n < m                 
+          tr
+            th=data["gameDay"][n]["gameDay"]["gameDayid"]
+            th=data["gameDay"][n]["gameDay"]["externalGameDayId"]
+            th=data["gameDay"][n]["gameDay"]["schedule"]["saleOpenDateTime"]
+            th=data["gameDay"][n]["gameDay"]["schedule"]["saleCloseDateTime"]
+            th=data["gameDay"][n]["gameDay"]["schedule"]["expirationDateTime"]
+            th=data["gameDay"][n++]["gameDay"]["schedule"]["drawScheduledDateTime"]   

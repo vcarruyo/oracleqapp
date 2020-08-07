@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  if errorInput
+    div(class="alert alert-dismissible alert-danger")
+      p El numero de sorteo inicial debe ser menor al numero de sorteo final 
+  if error || errorToken 
+    div(class="alert alert-dismissible alert-danger")
+      p=error || errorToken
+  div(class='container')
+    div(class='row')
+      div(style={width: '60%', margin:'0px auto'})
+        h3(style={'text-align': 'center', 'margin-top': '80px'}) Exportar sorteos de Quiniela por rango 
+        form(action='/quiniela/instancias/rango' method='get')
+          div(class='form-group')
+            input(class='form-control' type='number' name='extGameDayFrom' min='0' max='99999' placeholder='Introduzca el numero de sorteo inicial' required)
+          div(class='form-group')
+            input(class='form-control' type='number' name='extGameDayTo' min='0' max='99999' placeholder='Introduzca el numero de sorteo inicial' required)
+          div(class='form-group')
+            input(class='btn btn-primary btn-block' type='submit' value='Buscar')
+          if errorToken
+            a(href="/autenticacion") Inicie sesión nuevamente
+          else
+            a(href='/tablero') Volver al menu
+
+  
+  

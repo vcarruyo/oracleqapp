@@ -1,0 +1,9 @@
+{
+    "betMinPrice": "default",
+    "betMaxPrice": "default",
+    "Instances": [
+        {"id":1,"name":"Default"},
+        {"id":2,"name":"Default"},
+        {"id":4,"name":"Default"}
+    ]
+}

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  if error
+    div(class="alert alert-dismissible alert-danger")
+      p=error.message 
+  div(class="container")
+    div(class="row")
+      div(style={width:"40%", margin:"25px auto"})
+        h1(style={"text-align":"center"}) Inicie Sesión
+        form(action="/autenticacion" method="POST")
+          div(class="form-group")
+            input(class="form-control" type="text" name="username" placeholder="username")
+          div(class="form-group")
+            input(class="form-control" type="password" name="password" placeholder="password")
+          button(class="btn btn-lg btn-primary btn-block" id="login" type="submit") Ingresar
+          a(href="/") Volver a pagina de bienvenida
+            
